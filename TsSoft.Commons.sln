@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TsSoft.Commons", "TsSoft.Commons\TsSoft.Commons.csproj", "{223401B1-C7F9-4058-A19D-29D713026035}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TsSoft.Commons.Test", "TsSoft.Commons.Test\TsSoft.Commons.Test.csproj", "{EEA463DE-0225-4F23-9BFA-79F1F646E470}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{223401B1-C7F9-4058-A19D-29D713026035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{223401B1-C7F9-4058-A19D-29D713026035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{223401B1-C7F9-4058-A19D-29D713026035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{223401B1-C7F9-4058-A19D-29D713026035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEA463DE-0225-4F23-9BFA-79F1F646E470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA463DE-0225-4F23-9BFA-79F1F646E470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA463DE-0225-4F23-9BFA-79F1F646E470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA463DE-0225-4F23-9BFA-79F1F646E470}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
