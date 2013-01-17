@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("TSSoft.Commons")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Library contains various utilities for working with collections and enums, text formatting, guid encoding, word pluralization and more")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("TS Soft")]
 [assembly: AssemblyProduct("TSSoft.Commons")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

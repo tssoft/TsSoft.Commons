@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\DelegatedEqualityComparer.cs" />
+    <Compile Include="Collections\Enums.cs" />
+    <Compile Include="Collections\EnumValue.cs" />
     <Compile Include="Graphics\ImageProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Text\Formatter.cs" />
@@ -53,15 +56,11 @@
     <Compile Include="Utils\ValueTypeHelper.cs" />
     <Compile Include="Utils\XmlDoc.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Collections\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if '$(Configuration)' == 'Release' (
-     del $(ProjectName).*.nupkg
-     nuget ? &amp;&amp; (nuget pack $(ProjectPath) -Prop Configuration=Release -OutputDirectory $(ProjectDir))
-)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
