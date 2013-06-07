@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
+
 using System.IO;
 
 namespace TsSoft.Commons.Graphics
@@ -19,66 +22,39 @@ namespace TsSoft.Commons.Graphics
         /// </summary>
         /// <param name="maxWidth">Максимальная ширина</param>
         /// <param name="maxHeight">Максимальная высота</param>
-        public void Resize(int maxWidth, int maxHeight)
+        public void Resize(int maxWidth, int maxHeight) 
         {
-            //TODO Очень плохо масштабирует при большой разнице между оригиналом и окончательным изображением
             using (var imageStream = new MemoryStream(Image))
             {
-                var bt = new Bitmap(imageStream);
-                int resizedWidth = maxWidth;
-                int resizedHeight = maxHeight;
-                if (bt.Width <= maxWidth && bt.Height <= maxHeight)
+                var image = new Bitmap(imageStream);
+
+                int originalWidth = image.Width;
+                int originalHeight = image.Height;
+
+                float ratioX = (float)maxWidth / (float)originalWidth;
+                float ratioY = (float)maxHeight / (float)originalHeight;
+                float ratio = Math.Min(ratioX, ratioY);
+
+                int newWidth = (int)(originalWidth * ratio);
+                int newHeight = (int)(originalHeight * ratio);
+
+                Bitmap newImage = new Bitmap(newWidth, newHeight, PixelFormat.Format24bppRgb);
+
+                using (System.Drawing.Graphics graphics = System.Drawing.Graphics.FromImage(newImage))
                 {
-                    resizedWidth = bt.Width;
-                    resizedHeight = bt.Height;
+                    graphics.CompositingQuality = CompositingQuality.HighQuality;
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.SmoothingMode = SmoothingMode.HighQuality;
+                    graphics.DrawImage(image, 0, 0, newWidth, newHeight);
                 }
-                else
-                {
-                    if (bt.Width < bt.Height)
-                    {
-                        var calcWidth = (int)(bt.Width * resizedHeight / bt.Height);
-                        if (calcWidth <= maxWidth)
-                        {
-                            resizedWidth = calcWidth;
-                        }
-                        else
-                        {
-                            resizedHeight = resizedHeight * resizedWidth / calcWidth;
-                        }
-                    }
-                    else
-                    {
-                        if (bt.Width > bt.Height)
-                        {
-                            var calcHeight = bt.Height * resizedWidth / bt.Width;
-                            if (calcHeight <= maxHeight)
-                            {
-                                resizedHeight = calcHeight;
-                            }
-                            else
-                            {
-                                resizedWidth = resizedWidth * resizedHeight / calcHeight;
-                            }
-                        }
-                        else
-                        {
-                            resizedWidth = (int)Math.Min((decimal)maxHeight, (decimal)maxWidth);
-                            resizedHeight = resizedWidth;
-                        }
-                    }
-                }
-                Image img = bt.GetThumbnailImage(
-                    resizedWidth,
-                    resizedHeight,
-                    delegate { return false; },
-                    IntPtr.Zero);
                 using (var ms = new MemoryStream())
                 {
-                    img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    newImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                     Image = ms.ToArray();
-                    Width = img.Width;
-                    Height = img.Height;
+                    Width = newImage.Width;
+                    Height = newImage.Height;
                 }
+
             }
         }
     }
