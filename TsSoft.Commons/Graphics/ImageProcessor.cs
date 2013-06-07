@@ -8,8 +8,10 @@ namespace TsSoft.Commons.Graphics
     {
         public byte[] Image { get; set; }
 
+        //TODO get width original image
         public int Width { get; set; }
 
+        //TODO get height original image
         public int Height { get; set; }
 
         /// <summary>
@@ -19,6 +21,7 @@ namespace TsSoft.Commons.Graphics
         /// <param name="maxHeight">Максимальная высота</param>
         public void Resize(int maxWidth, int maxHeight)
         {
+            //TODO Очень плохо масштабирует при большой разнице между оригиналом и окончательным изображением
             using (var imageStream = new MemoryStream(Image))
             {
                 var bt = new Bitmap(imageStream);

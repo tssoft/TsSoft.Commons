@@ -54,6 +54,7 @@
     <Compile Include="Graphics\ImageProcessorTest.cs" />
     <Compile Include="Text\FormatterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\DirectoryLockerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TSSoft.Commons\TsSoft.Commons.csproj">

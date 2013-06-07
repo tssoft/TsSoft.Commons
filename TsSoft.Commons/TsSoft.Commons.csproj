@@ -51,6 +51,7 @@
     <Compile Include="Text\Pluralizer.cs" />
     <Compile Include="Text\StringExtention.cs" />
     <Compile Include="Utils\DirectoryExt.cs" />
+    <Compile Include="Utils\DirectoryLocker.cs" />
     <Compile Include="Utils\Md5Hash.cs" />
     <Compile Include="Utils\PathExt.cs" />
     <Compile Include="Utils\ValueTypeHelper.cs" />
