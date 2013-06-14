@@ -22,13 +22,13 @@ using System.Text;
 
         private DirectoryInfo directory { get; set; }
 
-        private Guid lockerId { get; set; }
+        public Guid LockerId { get; private set; }
 
         private string writeLockFileName 
         { 
             get
             {
-                return baseWriteLockFileName + lockerIdSeparator + lockerId.ToString() + "." + lockFileExtension;
+                return baseWriteLockFileName + lockerIdSeparator + LockerId.ToString() + "." + lockFileExtension;
             }
         }
 
@@ -79,7 +79,7 @@ using System.Text;
         public DirectoryLocker(string path)
         {
             directory = new DirectoryInfo(path);
-            lockerId = Guid.NewGuid();
+            LockerId = Guid.NewGuid();
         }
 
         /// <summary>
@@ -168,6 +168,21 @@ using System.Text;
                 Thread.Sleep(timeSpan);
                 iterator++;
             }
+        }
+
+        public static void WriteUnlock(Guid lockerId, string directoryPath)
+        {
+            var dir = new DirectoryInfo(directoryPath);
+            if(!dir.Exists)
+            {
+                throw new DirectoryLockerException("Directory does not exists");
+            }
+            var fileName = baseWriteLockFileName + lockerIdSeparator + lockerId.ToString() + "." + lockFileExtension;
+            if (dir.GetFiles(fileName).Count() == 0)
+            {
+                throw new DirectoryLockerException("Directory is already unlocked for writing.");
+            }
+            File.Delete(Path.Combine(directoryPath, fileName));
         }
 
     }

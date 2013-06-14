@@ -49,6 +49,18 @@ namespace TsSoft.Commons.Test.Utils
         }
 
         [TestMethod]
+        public void TestStaticWriteUnlock()
+        {
+            var testDir = new DirectoryInfo(Path.Combine(tempDir.FullName, Guid.NewGuid().ToString()));
+            testDir.Create();
+            var locker = new DirectoryLocker(testDir.FullName);
+            locker.WriteLock();
+            Assert.AreEqual(1, testDir.GetFiles("write*.lock").Count());
+            DirectoryLocker.WriteUnlock(locker.LockerId, testDir.FullName);
+            Assert.AreEqual(0, testDir.GetFiles("write*.lock").Count());
+        }
+
+        [TestMethod]
         public void TestReadWriteLock()
         {
             var testDir = new DirectoryInfo(Path.Combine(tempDir.FullName, Guid.NewGuid().ToString()));
@@ -101,10 +113,10 @@ namespace TsSoft.Commons.Test.Utils
             });
             var locker = new DirectoryLocker(testDir.FullName);
             var start = DateTime.Now;
-            locker.WaitReadWriteUnlock();
+            locker.WaitReadWriteUnlock(10, 1000);
             var finish = DateTime.Now;
             var delta = finish - start;
-            Assert.IsTrue(delta.TotalSeconds > 4);
+            Assert.IsTrue(delta.TotalSeconds > 3);
         }
 
         [TestMethod]
@@ -120,10 +132,10 @@ namespace TsSoft.Commons.Test.Utils
             });
             var locker = new DirectoryLocker(testDir.FullName);
             var start = DateTime.Now;
-            locker.WaitWriteUnlock();
+            locker.WaitWriteUnlock(10, 1000);
             var finish = DateTime.Now;
             var delta = finish - start;
-            Assert.IsTrue(delta.TotalSeconds > 4);
+            Assert.IsTrue(delta.TotalSeconds > 3);
         }
 
         private void ReadWriteUnLock(DirectoryLocker locker, int waitSeconds)
