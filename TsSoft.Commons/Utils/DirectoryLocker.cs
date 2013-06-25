@@ -60,7 +60,7 @@ using System.Text;
         {
             get
             {
-                return directory.GetFiles(baseWriteLockFileName + "*." + lockFileExtension).Count() > 0;
+                return directory.GetFiles(baseWriteLockFileName + lockerIdSeparator + LockerId + "." + lockFileExtension).Count() > 0;
             }
         }
 
