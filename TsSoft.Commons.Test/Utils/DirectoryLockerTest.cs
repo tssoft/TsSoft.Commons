@@ -86,8 +86,8 @@ namespace TsSoft.Commons.Test.Utils
         {
             var testDir = new DirectoryInfo(Path.Combine(tempDir.FullName, Guid.NewGuid().ToString()));
             testDir.Create();
-            using (var lockFile = File.Create(Path.Combine(testDir.FullName, "write_" + Guid.NewGuid().ToString() + ".lock"))) { }
             var locker = new DirectoryLocker(testDir.FullName);
+            using (var lockFile = File.Create(Path.Combine(testDir.FullName, "write_" + locker.LockerId.ToString() + ".lock"))) { }
             Assert.IsTrue(locker.IsWriteLocked);
         }
 
@@ -128,14 +128,13 @@ namespace TsSoft.Commons.Test.Utils
             testLocker.WriteLock();
             Task.Factory.StartNew(() =>
             {
-                WriteUnLock(testLocker, 5);
+                WriteUnLock(testLocker, 10);
             });
-            var locker = new DirectoryLocker(testDir.FullName);
             var start = DateTime.Now;
-            locker.WaitWriteUnlock(10, 1000);
+            testLocker.WaitWriteUnlock(100, 1000);
             var finish = DateTime.Now;
             var delta = finish - start;
-            Assert.IsTrue(delta.TotalSeconds > 3);
+            Assert.IsTrue(delta.TotalSeconds > 7);
         }
 
         private void ReadWriteUnLock(DirectoryLocker locker, int waitSeconds)
