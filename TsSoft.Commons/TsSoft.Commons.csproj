@@ -54,6 +54,7 @@
     <Compile Include="Utils\DirectoryLocker.cs" />
     <Compile Include="Utils\Md5Hash.cs" />
     <Compile Include="Utils\PathExt.cs" />
+    <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="Utils\ValueTypeHelper.cs" />
     <Compile Include="Utils\XmlDoc.cs" />
   </ItemGroup>
