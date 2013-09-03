@@ -5,18 +5,20 @@ namespace TsSoft.Commons.Text
 {
     public class Formatter
     {
-        public static string FormatFileSize(long bytes)
+        public static string FormatFileSize(long bytes, int scale = 2)
         {
-            const int scale = 1024;
+            scale = scale < 0 ? 2 : scale;
+            const int factor = 1024;
             string[] orders = new string[] { "ГБ", "МБ", "КБ", "байт" };
-            long max = (long)Math.Pow(scale, orders.Length - 1);
+            long max = (long)Math.Pow(factor, orders.Length - 1);
             foreach (string order in orders)
             {
                 if (bytes > max)
                 {
-                    return string.Format("{0:##.##} {1}", decimal.Divide(bytes, max), order);
+                    var formatString = "{0:F" + scale + "} {1}";
+                    return string.Format(formatString, decimal.Divide(bytes, max), order);
                 }
-                max /= scale;
+                max /= factor;
             }
             return "пустой";
         }

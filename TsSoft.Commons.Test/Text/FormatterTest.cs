@@ -6,6 +6,18 @@ namespace TsSoft.Commons.Text
     public class FormatterTest
     {
         [TestMethod()]
+        public void TestFormatFileSize()
+        {
+            Assert.AreEqual("1024,00 байт", Formatter.FormatFileSize(1024));
+            Assert.AreEqual("9,8 КБ", Formatter.FormatFileSize(10000, 1));
+            Assert.AreEqual("1024,0 КБ", Formatter.FormatFileSize(1048576, 1));
+            Assert.AreEqual("пустой", Formatter.FormatFileSize(-1048576, 1));
+            Assert.AreEqual("пустой", Formatter.FormatFileSize(0));
+            Assert.AreEqual("1024 КБ", Formatter.FormatFileSize(1048576, 0));
+            Assert.AreEqual("1024,00 КБ", Formatter.FormatFileSize(1048576, -1));
+        }
+
+        [TestMethod()]
         public void ShortenByWordTest()
         {
             Assert.AreEqual(null, Formatter.ShortenTextByWord(null, 50));
