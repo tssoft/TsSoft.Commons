@@ -7,7 +7,10 @@ namespace TsSoft.Commons.Text
     {
         public static string FormatFileSize(long bytes, int scale = 2)
         {
-            scale = scale < 0 ? 2 : scale;
+            if ((bytes <= 1024) || (scale < 0))
+            {
+                scale = 0;
+            }
             const int factor = 1024;
             string[] orders = new string[] { "ГБ", "МБ", "КБ", "байт" };
             long max = (long)Math.Pow(factor, orders.Length - 1);

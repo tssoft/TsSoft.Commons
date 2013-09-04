@@ -8,13 +8,13 @@ namespace TsSoft.Commons.Text
         [TestMethod()]
         public void TestFormatFileSize()
         {
-            Assert.AreEqual("1024,00 байт", Formatter.FormatFileSize(1024));
-            Assert.AreEqual("9,8 КБ", Formatter.FormatFileSize(10000, 1));
+            Assert.AreEqual("1024 байт", Formatter.FormatFileSize(1024));
+            Assert.AreEqual("1,1 МБ", Formatter.FormatFileSize(1200000, 1));
             Assert.AreEqual("1024,0 КБ", Formatter.FormatFileSize(1048576, 1));
             Assert.AreEqual("пустой", Formatter.FormatFileSize(-1048576, 1));
             Assert.AreEqual("пустой", Formatter.FormatFileSize(0));
             Assert.AreEqual("1024 КБ", Formatter.FormatFileSize(1048576, 0));
-            Assert.AreEqual("1024,00 КБ", Formatter.FormatFileSize(1048576, -1));
+            Assert.AreEqual("1024 КБ", Formatter.FormatFileSize(1048576, -1));
         }
 
         [TestMethod()]
