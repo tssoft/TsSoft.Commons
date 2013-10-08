@@ -54,6 +54,7 @@
     <Compile Include="Graphics\ImageProcessorTest.cs" />
     <Compile Include="Text\FormatterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Text\StringExtentionTest.cs" />
     <Compile Include="Utils\DirectoryLockerTest.cs" />
     <Compile Include="Utils\StringUtilsTest.cs" />
   </ItemGroup>
