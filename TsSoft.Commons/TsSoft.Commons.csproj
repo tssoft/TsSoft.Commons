@@ -50,6 +50,7 @@
     <Compile Include="Text\GuidEncoder.cs" />
     <Compile Include="Text\Pluralizer.cs" />
     <Compile Include="Text\StringExtention.cs" />
+    <Compile Include="Utils\AssemblyResourceHelper.cs" />
     <Compile Include="Utils\DirectoryExt.cs" />
     <Compile Include="Utils\DirectoryLocker.cs" />
     <Compile Include="Utils\Md5Hash.cs" />
