@@ -22,7 +22,12 @@ namespace TsSoft.Commons.Graphics
         /// </summary>
         /// <param name="maxWidth">Максимальная ширина</param>
         /// <param name="maxHeight">Максимальная высота</param>
-        public void Resize(int maxWidth, int maxHeight) 
+        public void Resize(int maxWidth, int maxHeight)
+        {
+            Resize(maxWidth, maxHeight, ImageFormat.Jpeg);
+        }
+
+        public void Resize(int maxWidth, int maxHeight, ImageFormat ouputFormat)
         {
             using (var imageStream = new MemoryStream(Image))
             {
@@ -49,7 +54,7 @@ namespace TsSoft.Commons.Graphics
                 }
                 using (var ms = new MemoryStream())
                 {
-                    newImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    newImage.Save(ms, ouputFormat);
                     Image = ms.ToArray();
                     Width = newImage.Width;
                     Height = newImage.Height;
