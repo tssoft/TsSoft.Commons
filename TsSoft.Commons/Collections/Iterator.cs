@@ -12,7 +12,7 @@ namespace TsSoft.Commons.Collections
 
     public class Iterator<T> : IIterator<T>
     {
-        private IEnumerator<T> enumerator;
+        private readonly IEnumerator<T> enumerator;
 
         public Iterator(IEnumerable<T> enumerable)
             : this(enumerable != null ? enumerable.GetEnumerator() : null)
