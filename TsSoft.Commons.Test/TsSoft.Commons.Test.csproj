@@ -55,6 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Collections\IteratorTest.cs" />
+    <Compile Include="Collections\ExtensionsTest.cs" />
     <Compile Include="Graphics\ImageProcessorTest.cs" />
     <Compile Include="Text\FormatterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
