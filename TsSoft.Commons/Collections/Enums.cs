@@ -42,6 +42,17 @@
             return (E)Enum.Parse(typeof(E), value, true);
         }
 
+        /// <summary>
+        /// Converts the string of the name or numeric value to an equivalent enumerated object. 
+        /// If string cannot be converted, default value is returned
+        /// </summary>
+        public static E StringToEnum<E>(string value, E defaultValue, bool ignoreCase = true) where E : struct
+        {
+            E result;
+            bool validValue = Enum.TryParse<E>(value, ignoreCase, out result);
+            return validValue ? result : defaultValue;
+        }
+
         public static E IntToEnum<E>(int value)
         {
             return (E)Enum.ToObject(typeof(E), value);
